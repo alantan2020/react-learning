@@ -60,8 +60,16 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import { Button } from "antd-mobile";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getBillList } from "@/store/modules/billStrore";
 
 export default function Layout() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getBillList());
+    console.log("获取账单列表");
+  }, [dispatch]);
   return (
     <div>
       Layout

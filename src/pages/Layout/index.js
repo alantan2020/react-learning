@@ -59,12 +59,17 @@
 // export default Layout
 import React from "react";
 import { Outlet } from "react-router-dom";
+import { Button } from "antd-mobile";
 
 export default function Layout() {
   return (
     <div>
-      <Outlet />
       Layout
+      <Outlet />
+      <Button color="primary">Primary Button全局</Button>
+      <div className="puple">
+        <Button color="primary">测试局部</Button>
+      </div>
     </div>
   );
 }

@@ -2,14 +2,23 @@ import { NavBar, DatePicker } from "antd-mobile";
 import React, { useState } from "react";
 import "./index.scss";
 import classNames from "classnames";
+import dayjs from "dayjs";
 
 const Month = () => {
   // 控制弹框的打开和关闭
   const [dateVisible, setDateVisible] = useState(false);
 
-  const onConfirm = () => {
+  // 控制时间显示
+  const [currentDate, setCurrentDate] = useState(() => {
+    return dayjs(new Date()).format("YYYY-MM");
+  });
+
+  const onConfirm = (date) => {
     setDateVisible(false);
     //其他逻辑
+    console.log(date);
+    const formatDate = dayjs(date).format("YYYY-MM");
+    setCurrentDate(formatDate);
   };
   return (
     <div className="monthlyBill">
@@ -20,7 +29,7 @@ const Month = () => {
         <div className="header">
           {/* 时间切换区域 */}
           <div className="date" onClick={() => setDateVisible(true)}>
-            <span className="text">2023 | 3月账单</span>
+            <span className="text">{currentDate + ""}月账单</span>
             {/* 根据当前弹框打开的状态控制expand类名的是否存在 */}
             <span
               className={classNames("arrow", dateVisible && "expand")}
@@ -81,10 +90,10 @@ export default Month;
 // // 控制弹框的打开和关闭
 // const [dateVisible, setDateVisible] = useState(false)
 
-//   // 控制时间显示
-//   const [currentDate, setCurrentDate] = useState(() => {
-//     return dayjs(new Date()).format('YYYY-MM')
-//   })
+// // 控制时间显示
+// const [currentDate, setCurrentDate] = useState(() => {
+//   return dayjs(new Date()).format('YYYY-MM')
+// })
 
 //   const [currentMonthList, setMonthList] = useState([])
 

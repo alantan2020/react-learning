@@ -138,8 +138,16 @@
 // }
 
 // export default New
+
+////////=====================
+// import React from "react";
+
+// export default function New() {
+//   return <div>New</div>;
+// }
+
 import React from "react";
 
-export default function New() {
-  return <div>New</div>;
+export default function index() {
+  return <div>index NEW</div>;
 }

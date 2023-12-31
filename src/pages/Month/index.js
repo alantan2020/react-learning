@@ -1,5 +1,5 @@
 import { NavBar, DatePicker } from "antd-mobile";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "./index.scss";
 import classNames from "classnames";
 import dayjs from "dayjs";
@@ -37,6 +37,15 @@ const Month = () => {
       total: pay + income
     };
   }, [currentMonthList]);
+
+  //初始化的时候把当前月的统计数据显示出来
+  useEffect(() => {
+    const nowDate = dayjs().format("YYYY-MM");
+    //边界值控制
+    if (monthGroup[nowDate]) {
+      setCurrentMonthList(monthGroup[nowDate]);
+    }
+  }, [monthGroup]);
 
   const onConfirm = (date) => {
     setDateVisible(false);
